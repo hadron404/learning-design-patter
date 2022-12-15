@@ -99,7 +99,8 @@ Specify the kinds of objects to create using a prototypical instance, and create
 Provide a surrogate or placeholder for another object to control access to it.
 
 *Singleton*::
-Ensure a class only has one instance, and provide a global point of access to it.
+_Ensure a class only has one instance, and provide a global point of access to it_.
+保证一个类仅有一个实例,并提供一个访问它的全局访问点。
 
 *State*::
 Allow an object to alter its behavior when its internal state changes. The object will appear to change its class.

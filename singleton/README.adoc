@@ -1,0 +1,58 @@
+= Singleton Pattern
+
+== Intent (意图)
+
+[quote,Erich Gamma - Richard Helm - Ralph Johnson - John M. Vlissides - 1994,Design Patterns: Elements of Reusable Object-Oriented Software-addison-wesley]
+Ensure a class only has one instance, and provide a global point of access to it. +
+_保证一个类仅有一个实例，并提供一个访问它的全局访问点_
+
+== Motivation (动机)
+
+It's important for some classes to have exactly one instance.
+对于一些类来说，只有一个实例是很重要的。(后面给出一些 xref:context-about-one-instance[具体案例])
+
+== Applicability (适用性)
+
+* 当类只能有一个实例而且客户可以从一个众所周知的访问点访问它时
+* 当这个唯一实例应该时通过子类化可扩展的，并且客户应该无需更改代码就能使用一个扩展的实例时（不理解）
+
+== Consequence (效果)
+
+. *Controlled access to sole instance.* 对唯一实例的受控访问
+. *Reduced name space.* 缩小名空间，避免存储唯一实例的全局变量污染名空间
+. *Permits refinement of operations and representation.* 允许对操作和表示的精化
+. *Permits a variable number of instances.* 允许可变数目的实例
+. *More flexible than class operations* 比类操作更灵活
+
+== Implementation
+
+. *Ensuring a unique instance* 保证一个唯一的实例
+. *Subclassing the Singleton class* 创建 Singleton 类的子类
+
+[quote,Erich Gamma - Richard Helm - Ralph Johnson - John M. Vlissides - 1994,Design Patterns: Elements of Reusable Object-Oriented Software-addison-wesley]
+A better solution is to make the class itself responsible for keeping track of its sole instance.
+The class can ensure that no other instance can be created (by intercepting requests to create new objects), and it can provide a way to access the instance.
+This is Singleton pattern.
+
+== Sample Code
+
+== Known Uses (已知应用)
+
+* J2EE 中的 ServletContext 、ServletContextConfig
+* Spring 中的 ApplicationContext
+* 数据库连接池
+* etc.
+
+[[context-about-one-instance]]
+=== 只有一个实例的场景
+
+* Web应用中的请求执行流程场景
+
+==== Web应用中的请求执行流程场景
+
+== Related Patterns
+Many patterns can be implemented using the Singleton pattern. See Abstract Factory, Builder, and Prototype.
+
+== Reference
+
+* https://juejin.cn/post/7080318543492808734[为什么要使用单例 - 掘金]
