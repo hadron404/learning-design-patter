@@ -1,0 +1,119 @@
+= Design Patterns
+
+[quote,Erich Gamma - Richard Helm - Ralph Johnson - John M. Vlissides - 1994, Design Patterns: Elements of Reusable Object-Oriented Software-addison-wesley]
+_It's a book of design patterns that describes simple and elegant solutions to specific problems in object-oriented software design_. +
+一本关于设计模式的书，它描述了在面向对象软件设计过程中针对特定问题的简洁而优雅的解决方案。
+
+
+[quote,Chirstopher Alexander ,AIS+77]
+_Each pattern describes a problem which occurs over and over again in our environment, and then describes the core of the solution to that problem, in such a way that you can use this solution a million times over, without ever doing it the same way twice_. +
+每一个模式描述了在我们周围不断重复发生的问题，以及该问题的解决方案的核心。这样，你就能一次又一次地使用该方案而不必做重复劳动。
+
+
+== 模式的四个基本元素：
+
+* *Pattern Name（模式名称）*：一个助记名，它用一两个词来描述模式的问题、解决方案和效果
+* *Problem（问题）*：描述了应该在何时使用模式
+* *Solution（解决方案）*：描述了设计的组成成分，它们之间的相互关系及各自的职责和协作方式。
+* *Consequences（效果）*：描述了模式应用的效果及使用模式应权衡的问题
+
+[quote,Erich Gamma - Richard Helm - Ralph Johnson - John M. Vlissides - 1994, Design Patterns: Elements of Reusable Object-Oriented Software-addison-wesley]
+The design patterns in this book are *descriptions of communicating objects and classes that are customized to solve a general design problem in particular context*.
+本书中的设计模式是对被用来在特定场景下解决一般设计问题的类和相互通信的对象的描述。
+
+== 怎样描述设计模式？
+
+. Pattern Name and Classification 模式名和分类
+. Intent 意图。是以下问题的简单陈述
+.. 设计模式是做什么的
+.. 基本原理和意图是什么
+.. 解决的是什么样的特定设计问题
+. Also Known As 别名
+. Motivation 动机
+. Applicability 适用性
+. Structure 结构
+. Participants 参与者
+. Collaborations 协作
+. Consequences 效果
+. Implementation 实现
+. Sample Code 代码示例
+. Known Uses 已知应用
+. Related Patterns 相关模式
+
+
+== The Catalog of Design Patterns
+
+Abstract Factory::
+_provide an interface for creating families of related or dependent objects without specifying their concrete classes_. +
+提供一个创建一系列相关或相互依赖对象的接口,而无需指定它们具体的类
+
+*Adapter*::
+Convert the interface of a class into another interface clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.
+
+*Bridge*::
+Decouple an abstraction from its implementation so that the two can vary independently.
+
+*Builder*::
+Separate the construction of a complex object from its representation so that the same construction process can create different representations.
+
+*Chain of Responsibility*::
+Avoid coupling the sender of a request to its receiver by giving more than one object a chance to handle the request. Chain the receiving objects and pass the request along the chain until an object handles it.
+
+*Command*::
+Encapsulate a request as an object, thereby letting you parameterize clients with different requests, queue or log requests, and support undoable operations.
+
+*Composite*::
+Compose objects into tree structures to represent part-whole hierarchies. Composite lets clients treat individual objects and composition of objects uniformly.
+
+*Decorator*::
+Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for extending functionality.
+
+*Facade*::
+Provide a unified interface to a set of interfaces in a subsystem. Facade defines a higher-level interface that makes the subsystem easier to use.
+
+*Factory Method*::
+Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses.
+
+*Flyweight*::
+Use sharing to support large numbers of fin-grained objects efficiently.
+
+*Interpreter*::
+Given a language, define a representation for its grammar along with an interpreter that uses the representation to interpret sentences in the language.
+
+*Iterator*::
+Provide a way to access the elements of an aggregate object sequentially without exposing its underlying representation.
+
+*Mediator*::
+Define an object that encapsulates how a set of objects interact. Mediator promotes loose coupling by keeping objects from referring to each other explicitly, and it lets you vary their interaction independently.
+
+*Memento*::
+Without violating encapsulation, capture and externalize an object's internal state so that the object can be restored to this state later.
+
+*Observer*::
+Define a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated automatically.
+
+*Prototype*::
+Specify the kinds of objects to create using a prototypical instance, and create new objects by copying this prototype.
+
+*Proxy*::
+Provide a surrogate or placeholder for another object to control access to it.
+
+*Singleton*::
+Ensure a class only has one instance, and provide a global point of access to it.
+
+*State*::
+Allow an object to alter its behavior when its internal state changes. The object will appear to change its class.
+
+*Strategy*::
+Define a family of algorithms, encapsulate each one, and make them interchangeable. Strategy lets the algorithm vary independently from clients that use it.
+
+*Template Method*::
+Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm's structure.
+
+*Visitor*::
+Represent an operation to be performed on the elements of an object structure. Visitor lets you define a new operation without changing the classes of the elements on which it operates.
+
+
+== Design Patterns Space
+
+
