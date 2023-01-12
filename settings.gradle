@@ -2,4 +2,6 @@ rootProject.name = 'learning-design-pattern'
 include 'chain-of-responsibility'
 include 'state'
 include 'Strategy'
+include 'command'
+include 'singleton'
 
