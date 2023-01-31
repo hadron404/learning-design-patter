@@ -1,9 +1,9 @@
 package org.example.use1.context;
 
-import org.example.use1.AbstractPriceState;
-import org.example.use1.concretes.ChildrenPriceConcreteState;
-import org.example.use1.concretes.NewReleasePriceConcreteState;
-import org.example.use1.concretes.RegularPriceConcreteState;
+import org.example.use1.state.AbstractPriceState;
+import org.example.use1.concretestate.ChildrenPriceConcreteState;
+import org.example.use1.concretestate.NewReleasePriceConcreteState;
+import org.example.use1.concretestate.RegularPriceConcreteState;
 import org.example.use1.constants.MoviePriceCode;
 
 public class MovieStateContext {

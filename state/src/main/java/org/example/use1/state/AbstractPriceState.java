@@ -1,4 +1,4 @@
-package org.example.use1;
+package org.example.use1.state;
 
 import org.example.use1.constants.MoviePriceCode;
 

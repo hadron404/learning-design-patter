@@ -1,6 +1,6 @@
-package org.example.use1.concretes;
+package org.example.use1.concretestate;
 
-import org.example.use1.AbstractPriceState;
+import org.example.use1.state.AbstractPriceState;
 import org.example.use1.constants.MoviePriceCode;
 
 public class RegularPriceConcreteState extends AbstractPriceState {
