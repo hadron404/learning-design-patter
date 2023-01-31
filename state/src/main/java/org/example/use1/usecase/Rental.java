@@ -1,6 +1,6 @@
-package org.example.usecase;
+package org.example.use1.usecase;
 
-import org.example.state.context.MovieStateContext;
+import org.example.use1.context.MovieStateContext;
 
 public class Rental {
 	private final MovieStateContext _movie;
@@ -22,7 +22,7 @@ public class Rental {
 		return _movie;
 	}
 
-	double getCharge() {
+	public double getCharge() {
 		return _movie.getCharge(_daysRented);
 	}
 

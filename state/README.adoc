@@ -1,15 +1,95 @@
 = State Pattern（状态模式）
 
-== 定义
-行为型设计模式之一，State Pattern 允许对象在内部状态变化时，变更其行为，并且修改其类。
+== 意图（Intent）
 
+[quote,Erich Gamma - Richard Helm - Ralph Johnson - John M. Vlissides - 1994,Design Patterns: Elements of Reusable Object-Oriented Software-addison-wesley]
+允许对象在其内部状态改变时更改其行为。对象看起来似乎修改了它的类。 +
+__
+Allow an object to alter its behaviour when its internal state changes. The object will appear to change its class.
+__
 
-== UML
+== 动机（Motivation）
+
+以 TCP 连接协议示例为例，状态模式描述了 TCPConnection 如何在每一种状态下表现出不同的行为。
+
+== 适用性（Applicability）
+
+在以下情况使用 State Pattern：
+
+* 一个对象的行为取决于它的状态，并且它必须在运行时刻根据状态改变它的行为。 +
+__
+An object's behaviour depends on its state, and it must change its behavior at run-time depending on that state.
+__
+* 一个操作中含有庞大的多分支的条件语句，且这些分支依赖于该对象的状态。这个状态通常用一个或多个枚举常量标识。 +
+__
+Operations have large, multipart conditional statements that depend on the object's state. This state is usually represented by one or more enumerated constants.
+__
+
+== 结构（Structure）
+
 image::docs/.assets/State_Design_Pattern_UML_Class_Diagram.png[state design pattern uml class diagram]
 
-== 优点
-* 定位指定状态的行为，并且针对不同状态来划分行为，使状态转换显示进行。
+== 参与者（Participants）
+* Context
+** 定义客户感兴趣的接口 +
+defines the interface of interest to clients
+** 维护一个定义了当前状态的 ConcreteState 子类的实例 +
+maintains an instance of a ConcreteState subclass that defines the current state.
+* State
+** 定义一个接口以封装与 Context 的一个特定状态相关的行为 +
+defines an interface for encapsulating the behavior associated with a particular state of the Context.
+* ConcreteState subclasses
+** 每一个子类实现一个与 Context 状态相关联的行为 +
+each subclass implements a behavior associated with a state of the Context.
 
-=== 以下场景考虑使用 State Pattern
-1. 对象的行为依赖于其状态，并且该对象必须在运行时根据其状态修改其行为
-2. 操作具有大量以及多部分组成的取决于对象状态的条件语句（如switch...case，if等）
+== 协作者（Collaborations）
+
+* Context 将特定状态请求委托给当前的 ConcreteState 对象。 +
+Context delegates state-specific requests to the current ConcreteStateObject.
+* 一个 context 可将滋生作为一个参数传递给处理请求的状态对象。这使得状态对象在必要时可访问 context。 +
+A context may pass itself as an argument to the State object handling the request. This lets the State object access the context if necessary.
+* Context 是客户的主要接口。客户能配置一个携带状态对象的 context。一旦一个 context 配置完毕，它的客户就没必要与状态对象直接交互。 +
+Context is the primary interface for clients. Clients can configure a context with State objects. Once a context is configured, its clients don't have to deal with the State objects directly.
+* 不管是 Context 还是 ConcreteState 子类，都能决定哪个状态是另外哪一个的后继者以及是在何种条件下进行状态转换。 +
+Either Context or the ConcreteState subclasses can decide which state succeeds another and under what circumstances.
+
+== 效果（Consequences）
+
+. 它将特定状态行为局部化并且划分不同的状态行为 +
+It localizes state-specific behavior and partitions behavior for different states.
+. 它使得状态转换显示化 +
+It makes state transitions explicit.
+. 状态对象能被共享 +
+State objects can be shared.
+
+== 实现（Implementation）
+
+The State pattern raises a variety of implementation issues:
+
+. *Who defines the state transitions?*
+. *A table-based alternative* 基于表的替代方案
+. *Creating and destroying State objects*
+.. to create State objects only when they are needed and destroy them there after versus 仅当需要时才创建状态对象并随后销毁它们
+.. creating them ahead of time and never destroying them 提前创建它们并且始终不销毁
+. *Using dynamic inheritance* 使用动态继承
+
+
+
+== 已知应用（Known Uses）
+
+. TCP 连接协议
+. 工作流逻辑
+. 订单状态流转
+
+== 相关模式（Related Patterns）
+
+. Flyweight 解释了何时以及怎样共享状态
+. Singleton
+
+
+== 小结（Conclusion）
+
+
+== 参考文献（Reference）
+
+

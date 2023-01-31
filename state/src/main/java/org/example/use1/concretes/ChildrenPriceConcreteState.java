@@ -1,7 +1,7 @@
-package org.example.state.concretes;
+package org.example.use1.concretes;
 
-import org.example.state.AbstractPriceState;
-import org.example.state.constants.MoviePriceCode;
+import org.example.use1.AbstractPriceState;
+import org.example.use1.constants.MoviePriceCode;
 
 public class ChildrenPriceConcreteState extends AbstractPriceState {
 	@Override

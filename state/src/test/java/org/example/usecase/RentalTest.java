@@ -1,7 +1,8 @@
 package org.example.usecase;
 
-import org.example.state.constants.MoviePriceCode;
-import org.example.state.context.MovieStateContext;
+import org.example.use1.constants.MoviePriceCode;
+import org.example.use1.context.MovieStateContext;
+import org.example.use1.usecase.Rental;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package org.example.state.constants;
+package org.example.use1.constants;
 
 /**
  * .

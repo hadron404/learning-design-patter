@@ -1,6 +1,6 @@
-package org.example.state;
+package org.example.use1;
 
-import org.example.state.constants.MoviePriceCode;
+import org.example.use1.constants.MoviePriceCode;
 
 public abstract class AbstractPriceState {
 	public abstract MoviePriceCode getPriceCode();

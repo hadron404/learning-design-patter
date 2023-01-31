@@ -1,10 +1,10 @@
-package org.example.state.context;
+package org.example.use1.context;
 
-import org.example.state.AbstractPriceState;
-import org.example.state.concretes.ChildrenPriceConcreteState;
-import org.example.state.concretes.NewReleasePriceConcreteState;
-import org.example.state.concretes.RegularPriceConcreteState;
-import org.example.state.constants.MoviePriceCode;
+import org.example.use1.AbstractPriceState;
+import org.example.use1.concretes.ChildrenPriceConcreteState;
+import org.example.use1.concretes.NewReleasePriceConcreteState;
+import org.example.use1.concretes.RegularPriceConcreteState;
+import org.example.use1.constants.MoviePriceCode;
 
 public class MovieStateContext {
 	private final String _title;
