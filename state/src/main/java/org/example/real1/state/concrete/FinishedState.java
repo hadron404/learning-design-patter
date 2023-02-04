@@ -1,7 +1,10 @@
 package org.example.real1.state.concrete;
 
+import org.example.real1.constant.Action;
 import org.example.real1.state.Context;
 import org.example.real1.state.State;
+
+import java.util.Optional;
 
 public class FinishedState implements State {
 
@@ -24,32 +27,32 @@ public class FinishedState implements State {
 	}
 
 	@Override
-	public void pick(Context context) {
-
+	public Optional<Action> pick(Context context) {
+		return Optional.empty();
 	}
 
 	@Override
-	public void handle(Context context) {
-
+	public Optional<Action> handle(Context context) {
+		return Optional.empty();
 	}
 
 	@Override
-	public void handleByFinancial(Context context) {
-
+	public Optional<Action> handleByFinancial(Context context) {
+		return Optional.empty();
 	}
 
 	@Override
-	public void rejectByFinancial(Context context) {
-
+	public Optional<Action> rejectByFinancial(Context context) {
+		return Optional.empty();
 	}
 
 	@Override
-	public void complete(Context context) {
-
+	public Optional<Action> complete(Context context) {
+		return Optional.empty();
 	}
 
 	@Override
-	public void drop(Context context) {
-
+	public Optional<Action> drop(Context context) {
+		return Optional.empty();
 	}
 }

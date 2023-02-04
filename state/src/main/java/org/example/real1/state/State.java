@@ -1,5 +1,9 @@
 package org.example.real1.state;
 
+import org.example.real1.constant.Action;
+
+import java.util.Optional;
+
 public interface State {
 
 	void next(Context context);
@@ -8,15 +12,15 @@ public interface State {
 
 	void printCurrentState(Context context);
 
-	void pick(Context context);
+	Optional<Action> pick(Context context);
 
-	void handle(Context context);
+	Optional<Action> handle(Context context);
 
-	void handleByFinancial(Context context);
+	Optional<Action> handleByFinancial(Context context);
 
-	void rejectByFinancial(Context context);
+	Optional<Action> rejectByFinancial(Context context);
 
-	void complete(Context context);
+	Optional<Action> complete(Context context);
 
-	void drop(Context context);
+	Optional<Action> drop(Context context);
 }

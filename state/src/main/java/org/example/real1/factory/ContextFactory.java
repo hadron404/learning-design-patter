@@ -1,42 +1,31 @@
 package org.example.real1.factory;
 
+import org.example.real1.constant.EnumConverter;
+import org.example.real1.constant.StatePersistenceMapping;
 import org.example.real1.state.Context;
-import org.example.real1.state.State;
-import org.example.real1.state.concrete.FinishedState;
-import org.example.real1.state.concrete.HandlingState;
-import org.example.real1.state.concrete.WaitingFinishState;
-import org.example.real1.state.concrete.WaitingPickState;
-import org.example.real1.usecase.entity.WorkOrder;
+import org.example.real1.persistence.Order;
 
-import java.util.HashMap;
+import java.util.Optional;
 
 public class ContextFactory {
-	public static final HashMap<Integer, State> STATE_MAP = new HashMap<>();
-
-
-	static {
-		initStateMap();
-	}
-
-
-	private static  void initStateMap() {
-		STATE_MAP.put(0, new WaitingPickState());
-		STATE_MAP.put(1, new HandlingState());
-		STATE_MAP.put(2, new WaitingFinishState());
-		STATE_MAP.put(3, new FinishedState());
-		System.out.println("all states have complete init.");
-		// STATE_MAP.put(4, new WaitingPickState());
-		// STATE_MAP.put(5, new WaitingPickState());
-	}
 
 	private ContextFactory() {
 	}
 
-	public static Context valueOf(WorkOrder order) {
-		State state = STATE_MAP.get(order.getState());
-		if (state == null) {
-			throw new RuntimeException("unknown state" + order.getState());
+	public static Context valueOf(Integer state) {
+		StatePersistenceMapping stateMapping = EnumConverter
+			.codeOf(StatePersistenceMapping.class, state)
+			.orElseThrow(() -> {
+				throw new RuntimeException("unknown state: " + state);
+			});
+		return new Context(stateMapping);
+	}
+
+	public static Context valueOf(Order order) {
+		if (order == null) {
+			throw new RuntimeException("order is null");
 		}
-		return new Context(state);
+		System.out.println("order [ " + order.getId() + " ] is preparing move");
+		return valueOf(order.getState());
 	}
 }

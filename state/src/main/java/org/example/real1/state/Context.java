@@ -1,35 +1,58 @@
 package org.example.real1.state;
 
-import org.example.real1.state.concrete.WaitingPickState;
+import org.example.real1.constant.Action;
+import org.example.real1.constant.StatePersistenceMapping;
+
+import java.util.Optional;
 
 /**
  * after-sale order context
  */
 public class Context {
 
-	private State _state;
+	private StatePersistenceMapping _state;
 
 	public Context() {
-		this._state = new WaitingPickState();
+		this._state = StatePersistenceMapping.WAITING_PICK;
 	}
 
-	public Context(State state) {
+	public Context(StatePersistenceMapping state) {
 		this._state = state;
 	}
 
-	public void setState(State state) {
+	public void setState(StatePersistenceMapping state) {
 		this._state = state;
 	}
 
+	public Integer getStateCode() {
+		return this._state.getCode();
+	}
 	public State getState() {
-		return _state;
+		return this._state.getState();
 	}
+
 
 	public void previousState() {
-		this._state.prev(this);
+		this.getState().prev(this);
 	}
 
 	public void nextState() {
-		this._state.next(this);
+		this.getState().next(this);
+	}
+
+	public void printState() {
+		this.getState().printCurrentState(this);
+	}
+
+	public Optional<Action> pick() {
+		return this.getState().pick(this);
+	}
+
+	public Optional<Action> handle() {
+		return this.getState().handle(this);
+	}
+
+	public Optional<Action> complete() {
+		return this.getState().complete(this);
 	}
 }

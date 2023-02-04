@@ -1,0 +1,23 @@
+= ${PATTERN_NAME}
+
+== 意图（Intent）
+
+== 动机（Motivation）
+
+== 适用性（Applicability）
+
+== 效果（Consequence）
+
+== 实现（Implementation）
+
+== 已知应用（Known Uses）
+
+== 相关模式（Related Patterns）
+
+== 小结（Conclusion）
+
+== 参考文献（Reference）
+
+
+
+
