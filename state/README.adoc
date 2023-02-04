@@ -1,4 +1,4 @@
-= State Pattern（状态模式）
+= State Pattern（状态模式）- 对象行为型模式
 
 == 意图（Intent）
 
@@ -86,6 +86,10 @@ The State pattern raises a variety of implementation issues:
 . Flyweight 解释了何时以及怎样共享状态
 . Singleton
 
+
+== FAQ
+
+* 状态模式与责任链模式的比较
 
 == 小结（Conclusion）
 
