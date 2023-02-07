@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.example.real1.application.constant.EnumConverter;
 import org.example.real1.application.constant.StatePersistenceMapping;
 
 import java.util.ArrayList;
@@ -21,12 +20,16 @@ public class Order {
 	@Setter
 	private OrderState state;
 
+
+	private OrderRefundCost refundCost;
+
 	private List<Flow> flows;
 
 	public Order(OrderId orderId, OrderState state) {
 		this.id = orderId;
 		this.state = state;
 		this.flows = new ArrayList<>();
+		this.refundCost = new OrderRefundCost();
 	}
 
 	public Order(Integer orderId, Integer state) {
@@ -36,6 +39,10 @@ public class Order {
 	public Order(StatePersistenceMapping state, Flow... flows) {
 		this.state = state.getCode();
 		this.flows = List.of(flows);
+	}
+
+	public boolean isReturnCashOrder () {
+		return this.refundCost.isRefundCashGreaterZero();
 	}
 
 	public record OrderId(Integer value) {

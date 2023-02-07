@@ -8,27 +8,20 @@ import org.example.real1.application.state.State;
 
 import java.util.Optional;
 
-public class HandlingState implements State {
-
-	public HandlingState() {
-	}
-
+public class FinancialHandlingState implements State {
 	@Override
 	public StatePersistenceMapping next(Order order) {
-		if (order.isReturnCashOrder()) {
-			return StatePersistenceMapping.FINANCIAL_HANDLING;
-		}
-		return StatePersistenceMapping.WAITING_FINISH;
+		return null;
 	}
 
 	@Override
 	public StatePersistenceMapping prev(Order order) {
-		return StatePersistenceMapping.WAITING_PICK;
+		return null;
 	}
 
 	@Override
 	public void printCurrentState() {
-		System.out.println("the order's current state is " + "HANDLING");
+
 	}
 
 	@Override
@@ -38,9 +31,7 @@ public class HandlingState implements State {
 
 	@Override
 	public Optional<Action> submit(Context context) {
-		System.out.println("the order is handling");
-		// 	 客服补充工单一些信息
-		return Optional.of(Action.SUBMIT);
+		return Optional.empty();
 	}
 
 	@Override
