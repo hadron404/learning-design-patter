@@ -1,67 +1,56 @@
 package org.example.real1.usecase;
 
-import org.example.real1.constant.StatePersistenceMapping;
-import org.example.real1.factory.ContextFactory;
+import org.example.real1.application.constant.StatePersistenceMapping;
+import org.example.real1.application.domain.Order;
+import org.example.real1.application.service.AfterSaleService;
+import org.example.real1.application.usecase.AfterSaleUseCase;
+import org.example.real1.application.usecase.Operator;
 import org.example.real1.persistence.Repository;
-import org.example.real1.state.Context;
-import org.example.real1.state.concrete.FinishedState;
-import org.example.real1.persistence.Order;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class AfterSaleServiceTest {
 
 	private final AfterSaleService afterSaleServiceUnderTest = new AfterSaleService();
-	private final Repository repository = new Repository();
-
-	@Test
-	void givenWorkOrder_whenState_thenInitContextSucceeded() {
-		Order order = repository.selectById(2);
-		Assertions.assertDoesNotThrow(() -> ContextFactory.valueOf(order));
-	}
-
-	@Test
-	void name() {
-		Order order = repository.selectById(1);
-		Context context = ContextFactory.valueOf(order);
-		context.pick();
-		context.nextState();
-		context.handle();
-		context.nextState();
-		context.complete();
-		context.nextState();
-		context.printState();
-		Assertions.assertTrue(context.getState() instanceof FinishedState);
-	}
 
 	@Test
 	void givenNewOrder_whenOrder_thenOrderCreated() {
+		Operator operator = new Operator(new Operator.OperatorId(13155), "Allen");
+		AfterSaleUseCase.CreateOrderCommand command = new AfterSaleUseCase.CreateOrderCommand(operator);
 		// Step1. 工单新建
-		Assertions.assertDoesNotThrow(afterSaleServiceUnderTest::create);
+		Assertions.assertDoesNotThrow(() -> afterSaleServiceUnderTest.create(command));
 		Assertions.assertEquals(1, Repository.ORDER_MAP.size());
 		Assertions.assertEquals(1, Repository.FLOW_MAP.size());
 	}
 
 	@Test
-	void givenNewOrder_whenKFPick_thenOrderPicked() {
+	void givenNewOrder_whenKFHandleFinished_thenOrderFinished() {
+		Operator operator = new Operator(new Operator.OperatorId(13155), "Allen");
 		// Step1. 工单新建
-		Integer orderId = afterSaleServiceUnderTest.create();
+		AfterSaleUseCase.CreateOrderCommand command = new AfterSaleUseCase.CreateOrderCommand(operator);
+		Order.OrderId orderId = afterSaleServiceUnderTest.create(command);
+		Assertions.assertNotNull(orderId);
 		Assertions.assertEquals(1, Repository.ORDER_MAP.size());
 		Assertions.assertEquals(1, Repository.FLOW_MAP.size());
 		// Step2. 客服领取
-		afterSaleServiceUnderTest.pick(orderId);
+		operator = new Operator(new Operator.OperatorId(13155), "Allen2");
+		AfterSaleUseCase.PickOrderCommand pickCommand = new AfterSaleUseCase.PickOrderCommand(orderId, operator);
+		afterSaleServiceUnderTest.pick(pickCommand);
 		Assertions.assertEquals(1, Repository.ORDER_MAP.size());
-		Assertions.assertEquals(StatePersistenceMapping.HANDLING.getCode(), Repository.ORDER_MAP.get(orderId).getState());
+		Assertions.assertEquals(StatePersistenceMapping.HANDLING.getCode().value(), Repository.ORDER_MAP.get(orderId.value()).getState());
 		Assertions.assertEquals(2, Repository.FLOW_MAP.size());
 		// Step3. 客服提交
-		afterSaleServiceUnderTest.handle(orderId);
+		AfterSaleUseCase.SubmitOrderCommand submitCommand = new AfterSaleUseCase.SubmitOrderCommand(orderId, operator);
+		afterSaleServiceUnderTest.submit(submitCommand);
 		Assertions.assertEquals(1, Repository.ORDER_MAP.size());
-		Assertions.assertEquals(StatePersistenceMapping.WAITING_FINISH.getCode(), Repository.ORDER_MAP.get(orderId).getState());
+		Assertions.assertEquals(StatePersistenceMapping.WAITING_FINISH.getCode().value(), Repository.ORDER_MAP.get(orderId.value()).getState());
 		Assertions.assertEquals(3, Repository.FLOW_MAP.size());
 		// Step4. 工单完结
-		afterSaleServiceUnderTest.complete(orderId);
+		AfterSaleUseCase.CompleteOrderCommand completeCommand = new AfterSaleUseCase.CompleteOrderCommand(orderId, operator);
+		afterSaleServiceUnderTest.complete(completeCommand);
 		Assertions.assertEquals(1, Repository.ORDER_MAP.size());
-		Assertions.assertEquals(StatePersistenceMapping.FINISHED.getCode(), Repository.ORDER_MAP.get(orderId).getState());
+		Assertions.assertEquals(StatePersistenceMapping.FINISHED.getCode().value(), Repository.ORDER_MAP.get(orderId.value()).getState());
 		Assertions.assertEquals(4, Repository.FLOW_MAP.size());
+		Repository.FLOW_MAP.forEach(System.out::println);
 	}
 }

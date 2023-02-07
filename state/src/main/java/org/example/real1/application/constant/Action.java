@@ -1,4 +1,4 @@
-package org.example.real1.constant;
+package org.example.real1.application.constant;
 
 import lombok.Getter;
 

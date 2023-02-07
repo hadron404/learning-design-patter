@@ -1,9 +1,10 @@
-package org.example.real1.state.concrete;
+package org.example.real1.application.state.concrete;
 
-import org.example.real1.constant.Action;
-import org.example.real1.constant.StatePersistenceMapping;
-import org.example.real1.state.Context;
-import org.example.real1.state.State;
+import org.example.real1.application.domain.Order;
+import org.example.real1.application.state.State;
+import org.example.real1.application.constant.Action;
+import org.example.real1.application.constant.StatePersistenceMapping;
+import org.example.real1.application.state.Context;
 
 import java.util.Optional;
 
@@ -13,19 +14,19 @@ public class HandlingState implements State {
 	}
 
 	@Override
-	public void next(Context context) {
+	public StatePersistenceMapping next(Order order) {
 	// 	 如果工单需要退款，则下个状态为 财务处理中
 	// 	 否则为 待完结
-		context.setState(StatePersistenceMapping.WAITING_FINISH);
+		return StatePersistenceMapping.WAITING_FINISH;
 	}
 
 	@Override
-	public void prev(Context context) {
-		context.setState(StatePersistenceMapping.WAITING_PICK);
+	public StatePersistenceMapping prev(Order order) {
+		return StatePersistenceMapping.WAITING_PICK;
 	}
 
 	@Override
-	public void printCurrentState(Context context) {
+	public void printCurrentState() {
 		System.out.println("the order's current state is " + "HANDLING");
 	}
 
@@ -35,14 +36,14 @@ public class HandlingState implements State {
 	}
 
 	@Override
-	public Optional<Action> handle(Context context) {
+	public Optional<Action> submit(Context context) {
 		System.out.println("the order is handling");
 	// 	 客服补充工单一些信息
 		return Optional.of(Action.SUBMIT);
 	}
 
 	@Override
-	public Optional<Action> handleByFinancial(Context context) {
+	public Optional<Action> submitByFinancial(Context context) {
 		return Optional.empty();
 	}
 

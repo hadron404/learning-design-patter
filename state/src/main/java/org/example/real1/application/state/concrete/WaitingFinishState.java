@@ -1,9 +1,10 @@
-package org.example.real1.state.concrete;
+package org.example.real1.application.state.concrete;
 
-import org.example.real1.constant.Action;
-import org.example.real1.constant.StatePersistenceMapping;
-import org.example.real1.state.Context;
-import org.example.real1.state.State;
+import org.example.real1.application.domain.Order;
+import org.example.real1.application.state.Context;
+import org.example.real1.application.state.State;
+import org.example.real1.application.constant.Action;
+import org.example.real1.application.constant.StatePersistenceMapping;
 
 import java.util.Optional;
 
@@ -14,17 +15,17 @@ public class WaitingFinishState implements State {
 	}
 
 	@Override
-	public void next(Context context) {
-		context.setState(StatePersistenceMapping.FINISHED);
+	public StatePersistenceMapping next(Order order) {
+		return StatePersistenceMapping.FINISHED;
 	}
 
 	@Override
-	public void prev(Context context) {
-
+	public StatePersistenceMapping prev(Order order) {
+		throw new IllegalStateException("the order can not switch to previous state,because the order was in wait-finish state");
 	}
 
 	@Override
-	public void printCurrentState(Context context) {
+	public void printCurrentState() {
 		System.out.println("the order's current state is " + "WAITING_FINISH");
 	}
 
@@ -34,12 +35,12 @@ public class WaitingFinishState implements State {
 	}
 
 	@Override
-	public Optional<Action> handle(Context context) {
+	public Optional<Action> submit(Context context) {
 		return Optional.empty();
 	}
 
 	@Override
-	public Optional<Action> handleByFinancial(Context context) {
+	public Optional<Action> submitByFinancial(Context context) {
 		return Optional.empty();
 }
 
