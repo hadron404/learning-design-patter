@@ -15,4 +15,8 @@ public class ContextFactory {
 		System.out.println("order [ " + order.getId() + " ] is preparing move");
 		return new Context(order);
 	}
+
+	public static Context newOrder() {
+		return new Context(Order.withDefault());
+	}
 }

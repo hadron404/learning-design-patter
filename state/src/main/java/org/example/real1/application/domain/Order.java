@@ -2,7 +2,6 @@ package org.example.real1.application.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.example.real1.application.constant.StatePersistenceMapping;
 
@@ -11,7 +10,6 @@ import java.util.List;
 
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
 public class Order {
 
 	@Setter
@@ -19,7 +17,6 @@ public class Order {
 
 	@Setter
 	private OrderState state;
-
 
 	private OrderRefundCost refundCost;
 
@@ -36,9 +33,13 @@ public class Order {
 		this(new OrderId(orderId), new OrderState(state));
 	}
 
-	public Order(StatePersistenceMapping state, Flow... flows) {
-		this.state = state.getCode();
-		this.flows = List.of(flows);
+	private Order(StatePersistenceMapping state, Flow... flows) {
+		this(null, state.getCode());
+		this.flows.addAll(List.of(flows));
+	}
+
+	public static Order withDefault() {
+		return new Order(StatePersistenceMapping.CREATED);
 	}
 
 	public boolean isReturnCashOrder () {

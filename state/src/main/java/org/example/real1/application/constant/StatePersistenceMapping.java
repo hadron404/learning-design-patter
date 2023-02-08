@@ -16,6 +16,7 @@ public enum StatePersistenceMapping implements EnumConverter {
 	WAITING_FINISH(new Order.OrderState(2), new WaitingFinishState()),
 	HANDLING(new Order.OrderState(1), new HandlingState()),
 	WAITING_PICK(new Order.OrderState(0), new WaitingPickState()),
+	CREATED(new Order.OrderState(-1), new CreatedState()),
 	;
 	private final Order.OrderState code;
 	private final State state;

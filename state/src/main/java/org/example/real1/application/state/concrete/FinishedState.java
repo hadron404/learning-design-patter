@@ -24,8 +24,8 @@ public class FinishedState implements State {
 	}
 
 	@Override
-	public void printCurrentState() {
-		System.out.println("the order's current state is " + "FINISHED");
+	public Optional<Action> create(Context context) {
+		return Optional.empty();
 	}
 
 	@Override

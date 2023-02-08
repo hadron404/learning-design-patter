@@ -1,8 +1,5 @@
 package org.example.real1.application.service;
 
-import org.example.real1.application.constant.Action;
-import org.example.real1.application.constant.StatePersistenceMapping;
-import org.example.real1.application.domain.Flow;
 import org.example.real1.application.domain.Order;
 import org.example.real1.application.factory.ContextFactory;
 import org.example.real1.application.usecase.AfterSaleUseCase;
@@ -14,7 +11,9 @@ public class AfterSaleService implements AfterSaleUseCase {
 
 	@Override
 	public Order.OrderId create(CreateOrderCommand command) {
-		Order order = new Order(StatePersistenceMapping.WAITING_PICK, new Flow(command.operator(), Action.CREATE));
+		Order order = ContextFactory
+			.newOrder()
+			.create(command.operator());
 		return orderPersistenceAdapter.saveOrder(order);
 	}
 

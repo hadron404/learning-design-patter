@@ -32,41 +32,45 @@ public class Context {
 		return this._state.getState();
 	}
 
-	public void previousState() {
-		this.getState().prev(this._order);
-	}
-
-	public void nextState() {
+	public Order nextState() {
 		this.setState(this.getState().next(this._order));
 		this._order.setState(this._state.getCode());
+		return this._order;
+	}
+
+	public void printPreviousState() {
+		System.out.println("the order's previous state is " + this.getState().prev(this._order).toString());
 	}
 
 	public void printState() {
-		this.getState().printCurrentState();
+		System.out.println("the order's current state is " + this._state.toString());
+	}
+
+	public Order create(Operator operator) {
+		this.getState()
+			.create(this)
+			.ifPresent((action) -> this._order.getFlows().add(new Flow(operator, action)));
+		return this.nextState();
 	}
 
 	public Order pick(Operator operator) {
 		this.getState()
 			.pick(this)
 			.ifPresent((action) -> this._order.getFlows().add(new Flow(operator, action)));
-		this.nextState();
-		return this._order;
+		return this.nextState();
 	}
 
 	public Order submit(Operator operator) {
 		this.getState()
 			.submit(this)
 			.ifPresent((action) -> this._order.getFlows().add(new Flow(operator, action)));
-		this.nextState();
-		return this._order;
+		return this.nextState();
 	}
 
 	public Order complete(Operator operator) {
 		this.getState()
 			.complete(this)
 			.ifPresent((action) -> this._order.getFlows().add(new Flow(operator, action)));
-		this.nextState();
-		return this._order;
-
+		return this.nextState();
 	}
 }

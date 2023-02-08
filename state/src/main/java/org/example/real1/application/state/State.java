@@ -10,11 +10,9 @@ public interface State {
 
 	StatePersistenceMapping next(Order order);
 
-	// void next(Context context);
-
 	StatePersistenceMapping prev(Order order);
 
-	void printCurrentState();
+	Optional<Action> create(Context context);
 
 	Optional<Action> pick(Context context);
 

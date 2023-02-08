@@ -24,8 +24,8 @@ public class WaitingPickState implements State {
 	}
 
 	@Override
-	public void printCurrentState() {
-		System.out.println("the order's current state is " + "WAITING_PICK");
+	public Optional<Action> create(Context context) {
+		return Optional.empty();
 	}
 
 	@Override
@@ -42,24 +42,20 @@ public class WaitingPickState implements State {
 	@Override
 	public Optional<Action> submitByFinancial(Context context) {
 		return Optional.empty();
-
 	}
 
 	@Override
 	public Optional<Action> rejectByFinancial(Context context) {
 		return Optional.empty();
-
 	}
 
 	@Override
 	public Optional<Action> complete(Context context) {
 		return Optional.empty();
-
 	}
 
 	@Override
 	public Optional<Action> drop(Context context) {
 		return Optional.empty();
-
 	}
 }

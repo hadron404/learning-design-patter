@@ -11,17 +11,17 @@ import java.util.Optional;
 public class FinancialHandlingState implements State {
 	@Override
 	public StatePersistenceMapping next(Order order) {
-		return null;
+		return StatePersistenceMapping.WAITING_FINISH;
 	}
 
 	@Override
 	public StatePersistenceMapping prev(Order order) {
-		return null;
+		return StatePersistenceMapping.HANDLING;
 	}
 
 	@Override
-	public void printCurrentState() {
-
+	public Optional<Action> create(Context context) {
+		return Optional.empty();
 	}
 
 	@Override
@@ -36,12 +36,14 @@ public class FinancialHandlingState implements State {
 
 	@Override
 	public Optional<Action> submitByFinancial(Context context) {
-		return Optional.empty();
+		System.out.println("the order is handling by financial employee");
+		return Optional.of(Action.FINANCIAL_SUBMIT);
 	}
 
 	@Override
 	public Optional<Action> rejectByFinancial(Context context) {
-		return Optional.empty();
+		System.out.println("the order was rejected by financial employee");
+		return Optional.of(Action.FINANCIAL_REJECT);
 	}
 
 	@Override
