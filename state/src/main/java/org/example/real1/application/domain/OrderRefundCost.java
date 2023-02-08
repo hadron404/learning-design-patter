@@ -1,13 +1,15 @@
 package org.example.real1.application.domain;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.*;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 @Getter
 @AllArgsConstructor
+@ToString
+@Setter
 public class OrderRefundCost {
 
 	private RefundCash byGoods;
@@ -17,6 +19,12 @@ public class OrderRefundCost {
 	private RefundCash byPrepaid;
 
 	private static final BigDecimal ZERO = new BigDecimal(0);
+
+	public OrderRefundCost(RefundCash byGoods, RefundCash byFreight) {
+		this.byGoods = byGoods;
+		this.byFreight = byFreight;
+		this.byPrepaid = new RefundCash(ZERO);
+	}
 
 	public OrderRefundCost() {
 		this.byGoods = new RefundCash(ZERO);
@@ -30,6 +38,9 @@ public class OrderRefundCost {
 			|| this.byPrepaid.value.compareTo(ZERO) > 0;
 	}
 
-	record RefundCash(BigDecimal value) {
+	public record RefundCash(BigDecimal value) {
+		public RefundCash {
+			value = value.setScale(4, RoundingMode.HALF_UP);
+		}
 	}
 }

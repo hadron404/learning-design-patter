@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.real1.application.constant.StatePersistenceMapping;
+import org.example.real1.persistence.FlowEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,7 @@ public class Order {
 	@Setter
 	private OrderState state;
 
+	@Setter
 	private OrderRefundCost refundCost;
 
 	private List<Flow> flows;
@@ -33,6 +35,11 @@ public class Order {
 		this(new OrderId(orderId), new OrderState(state));
 	}
 
+
+	private Order(StatePersistenceMapping state, OrderRefundCost refundCost) {
+		this(null, state.getCode());
+		this.refundCost = refundCost;
+	}
 	private Order(StatePersistenceMapping state, Flow... flows) {
 		this(null, state.getCode());
 		this.flows.addAll(List.of(flows));
