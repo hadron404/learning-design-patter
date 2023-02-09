@@ -80,6 +80,7 @@ The State pattern raises a variety of implementation issues:
 . TCP 连接协议
 . 工作流逻辑
 . 订单状态流转
+. 有限状态机
 
 == 相关模式（Related Patterns）
 
@@ -96,4 +97,9 @@ The State pattern raises a variety of implementation issues:
 
 == 参考文献（Reference）
 
+https://www.jianshu.com/p/895047a04ae5[cola-statemachine：轻量级 无状态状态机开源框架]
+https://developer.aliyun.com/article/937549[订单状态流转业务状态机的选择]
+https://www.cnblogs.com/javaadu/p/11832581.html[spring-statemachine 实战]
+https://www.cnblogs.com/Zero-Jo/p/14151146.html[spring statemachine 缺点]
+https://blog.csdn.net/significantfrank/article/details/104996419[基于 DSL 实现状态机引擎的思考]
 
