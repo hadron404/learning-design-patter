@@ -1,0 +1,57 @@
+= Factory Method Pattern —— 对象创建型模式
+
+== 意图（Intent）
+Define an interface for creating an object, but let subclasses decide which class to instantiate. +
+Factory Method lets a class defer instantiation to subclasses.
+
+定义了一个创建对象的接口，但由子类决定实例化的类是哪一个。工厂方法让类把实例化推迟到子类。
+
+== 动机（Motivation）
+
+== 适用性（Applicability）
+
+在下列情况下可以使用 Factory Method 模式
+
+* 当一个类不知道它所必须创建的对象的类的时候
+* 当一个类希望由它的子类来指定它所创建的对象的时候
+* 当类将创建对象的职责委托给多个帮助子类中的某一个，并且你希望将哪一个帮助子类是代理者这一信息局部化的时候
+
+== 结构（Structure）
+
+== 参与者（Participants）
+
+* Product
+** 定义工厂方法所创建的对象的接口
+* ConcreteProduct
+** 实现 Product 接口
+* Creator
+** 声明工厂方法
+** 该方法返回一个 Product 类型的对象
+** Creator 也可以定义一个工厂方法的缺省实现，它返回一个缺省的 ConcreteProduct 对象
+* ConcreteCreator
+** 重定义工厂方法以返回一个 Product 对象
+
+== 协作者（Collaborations）
+== 效果（Consequence）
+
+. 为子类提供挂钩（hook）
+. 连接平行的类层次
+
+
+== 实现（Implementation）
+
+== 已知应用（Known Uses）
+
+== 相关模式（Related Patterns）
+
+* Abstract Factory
+* Template Methods
+* Prototypes
+
+== 小结（Conclusion）
+
+== 参考文献（Reference）
+
+
+
+

@@ -1,6 +1,12 @@
-= ${PATTERN_NAME}
+= Abstract Factory —— 对象创建型模式
 
 == 意图（Intent）
+
+提供一个接口，用于创建相关或依赖对象的家族，而不需要明确指定类。
+Provide an interface for creating families of related or dependent objects without
+specifying their concrete classes.
+
+
 
 == 动机（Motivation）
 
@@ -11,6 +17,8 @@
 == 效果（Consequence）
 
 == 实现（Implementation）
+
+抽象工厂的方法经常以工厂方法的方式实现。
 
 == 已知应用（Known Uses）
 
