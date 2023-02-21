@@ -11,7 +11,9 @@ public class LazyInstantiationByDCL {
 	private LazyInstantiationByDCL() { // <1>
 	}
 
-	private static LazyInstantiationByDCL instance = null; // <2>
+	private static
+	volatile // <7>
+	LazyInstantiationByDCL instance = null; // <2>
 
 	@SuppressWarnings("InstantiationOfUtilityClass")
 	public static LazyInstantiationByDCL getInstance() { // <3>

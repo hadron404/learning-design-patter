@@ -4,7 +4,7 @@
 
 [quote,Erich Gamma - Richard Helm - Ralph Johnson - John M. Vlissides - 1994,Design Patterns: Elements of Reusable Object-Oriented Software-addison-wesley]
 Ensure a class only has one instance, and provide a global point of access to it. +
-_保证一个类仅有一个实例，并提供一个访问它的全局访问点_
+_确保一个类仅有一个实例，并提供一个访问它的全局访问点_
 
 == Motivation (动机)
 
@@ -77,6 +77,15 @@ include::{docdir}/src/main/java/org/example/LazyInstantiationByDCL.java[lines=3.
 
 ----
 
+<1> 私有构造方法，阻止在类本身以外的任何地方创建类实例
+<2> 唯一实例：等待第一次使用时再创建（延迟实例化）
+<3> 提供的全局访问点
+<4> 第一次检查实例：为了解决同步锁只会再第一次创建时才会使用，其余时间不再需要同步锁，减少性能的浪费
+<5> 第一次创建实例时加同步锁：加锁为了解决多线程时该方法会产生多个实例
+<6> 再次检查实例
+<7> 对唯一实例加上 volatile 关键字：避免多线程中发生指令重排序
+
+
 ==== Bill pugh approach： Static Inner Helper Class
 
 ----
@@ -133,6 +142,7 @@ Many patterns can be implemented using the Singleton pattern. See Abstract Facto
 == Reference
 
 * [设计模式：可复用面向对象软件的基础]
+* [HeadFirst 设计模式]
 * https://juejin.cn/post/7080318543492808734[为什么要使用单例 - 掘金]
 * https://www.cnblogs.com/xcgShare/p/11951891.html[]
 * https://blog.csdn.net/mnb65482/article/details/80458571[深入理解单例模式]
@@ -140,3 +150,4 @@ Many patterns can be implemented using the Singleton pattern. See Abstract Facto
 * https://www.cnblogs.com/dolphin0520/p/3811445.html[Java 内部类详解]
 * https://blog.csdn.net/qq_28181131/article/details/82258877[Java 中静态内部类的加载时机]
 * https://dzone.com/articles/singleton-bill-pugh-solution-or-enum[Singletons: Bill Pugh Solution or Enum]
+* https://blog.csdn.net/qq_37960603/article/details/103944203[双重检查锁单例模式为什么要用 volatile 关键字]
