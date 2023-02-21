@@ -11,12 +11,42 @@ specifying their concrete classes.
 == 动机（Motivation）
 
 == 适用性（Applicability）
+
+在以下情况可以使用 Abstract Factory 模式
+
+* 一个系统要独立与它的产品的创建、组合和表示时 +
+a system should be independent of how its products are created, composed, and represented
+* 一个系统要由多个产品系列中的一个来配置时 +
+a system should be configured with one of multiple families of products
+* 当你要强调一些列相关的产品对象的设计以便进行联合使用时 +
+a family of related product objects is designed to be used together, and you need to enforce this constraint
+* 当你提供一个产品类库，而只想显示它们的接口而不是实现时 +
+you want to provide a class library of products,and you want to reveal just their interfaces, not their implementations
+
 == 结构（Structure）
 == 参与者（Participants）
+
+* AbstractFactory —— 声明一个创建抽象产品对象的操作接口
+* ConcreteFactory —— 实现创建具体产品对象的操作
+* AbstractProduct —— 为一类产品对象声明一个接口
+* ConcreteProduct —— 定义一个将被相应的具体工厂创建的产品对象，实现 AbstractProduct 接口
+* Client —— 仅使用由 AbstractFactory 和 AbstractProduct 类声明的接口
+
 == 协作者（Collaborations）
+
 == 效果（Consequence）
 
+* 分离了具体的类
+* 使得易于交换产品系列
+* 有利于产品的一致性
+* 难以支持新种类的产品
+
 == 实现（Implementation）
+
+实现 AbstractFactory 模式的一些有用技术：
+
+. 工厂通常最好实现为一个 Singleton
+
 
 抽象工厂的方法经常以工厂方法的方式实现。
 
@@ -27,6 +57,8 @@ specifying their concrete classes.
 == 小结（Conclusion）
 
 == 参考文献（Reference）
+* Head First 设计模式
+
 
 
 
