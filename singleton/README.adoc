@@ -59,7 +59,7 @@ include::{docdir}/src/main/java/org/example/EarlyInstantiation.java[lines=3..]
 
 === 懒汉式：延迟实例化（Lazy Instantiation）
 
-
+[source,java]
 ----
 
 include::{docdir}/src/main/java/org/example/LazyInstantiation.java[lines=3..]
@@ -68,9 +68,10 @@ include::{docdir}/src/main/java/org/example/LazyInstantiation.java[lines=3..]
 
 <1> 唯一实例
 
-[source,java]
 
 ==== Double Check Lock
+
+[source,java]
 ----
 
 include::{docdir}/src/main/java/org/example/LazyInstantiationByDCL.java[lines=3..]
@@ -88,6 +89,8 @@ include::{docdir}/src/main/java/org/example/LazyInstantiationByDCL.java[lines=3.
 
 ==== Bill pugh approach： Static Inner Helper Class
 
+
+[source,java]
 ----
 
 include::{docdir}/src/main/java/org/example/LazyInstantiationByInnerClass.java[lines=3..]
@@ -99,6 +102,7 @@ DCL式 和 Bill Pugh 式 都会因为反射而对单例模式造成破坏，所�
 
 ==== 枚举式
 
+[source,java]
 ----
 
 include::{docdir}/src/main/java/org/example/EnumSingleton.java[lines=3..]
@@ -107,6 +111,7 @@ include::{docdir}/src/main/java/org/example/EnumSingleton.java[lines=3..]
 
 ==== 容器式
 
+[source,java]
 ----
 
 include::{docdir}/src/main/java/org/example/ContainerSingleton.java[lines=3..]
